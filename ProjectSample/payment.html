@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Page</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+  />
+  <link href="/css/main.min.css" rel="stylesheet" />
+  <style>
+    .image {
+      width: 100%;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-primary fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light" href="#me">Mobi-Comm Service Ltd</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active text-light" aria-current="page" href="/ProjectSample/Home.html">Plans</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-light" aria-current="page" href="/ProjectSample/Login.html">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Payment Options Heading -->
+  <div class="container pt-5 text-center">
+    <h3 class="pt-5 text-primary">Payment Options</h3>
+    <p class="bg-info text-primary d-inline-block">
+      Choose your preferred payment method below:
+    </p>
+  </div>
+  <br />
+
+  <!-- Main Content Container -->
+  <div class="container">
+    <!-- Images Row -->
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center">
+        <img src="/images/payment.jpg" alt="Payment Image" class="image img-fluid rounded-pill" />
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center">
+        <img src="/images/payment1.jpg" alt="Payment Image" class="image img-fluid rounded-pill" />
+      </div>
+    </div>
+
+    <!-- Accordion and Payment Summary Row -->
+    <div class="row pt-4">
+      <!-- Accordion Column -->
+      <div class="col-lg-6 col-md-8 col-sm-12">
+        <div class="accordion" id="accordionExample">
+          <!-- Credit/Debit/ATM Card -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                Credit/Debit/ATM Card
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="cardNumber" class="form-label">Enter Card Number</label>
+                    <input type="text" class="form-control" id="cardNumber" placeholder="XXXX XXXX XXXX XXXX" required />
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col">
+                      <label for="expiryDate" class="form-label">Valid thru - MM/YY</label>
+                      <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required />
+                    </div>
+                    <div class="col">
+                      <label for="cvv" class="form-label">CVV</label>
+                      <input type="password" class="form-control" id="cvv" placeholder="CVV" required />
+                      <small class="text-muted"><a href="#" class="text-decoration-none">What is CVV?</a></small>
+                    </div>
+                  </div>
+                  <div class="d-grid">
+                    <button
+                      type="button"
+                      class="btn btn-info text-primary w-50 proceed-payment"
+                      data-payment-method="Credit/Debit/ATM Card"
+                    >
+                      Proceed to Payment
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <br />
+          <!-- Net Banking -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo"
+                aria-expanded="false"
+                aria-controls="collapseTwo"
+              >
+                Net Banking
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="bankSelect" class="form-label">Select Your Bank</label>
+                    <select class="form-select" id="bankSelect" required>
+                      <option value="" disabled selected>Select your bank</option>
+                      <option value="bank1">State Bank of India</option>
+                      <option value="bank2">ICICI Bank</option>
+                      <option value="bank3">Canara Bank</option>
+                    </select>
+                  </div>
+                  <div class="d-grid">
+                    <button
+                      type="button"
+                      class="btn btn-info text-primary w-50 proceed-payment"
+                      data-payment-method="Net Banking"
+                    >
+                      Proceed to Payment
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <br />
+          <!-- UPI -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+              >
+                UPI
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="upiId" class="form-label">Enter UPI ID</label>
+                    <input type="text" class="form-control" id="upiId" placeholder="example@upi" required />
+                  </div>
+                  <div class="d-grid">
+                    <button
+                      type="button"
+                      class="btn btn-info text-primary w-50 proceed-payment"
+                      data-payment-method="UPI"
+                    >
+                      Proceed to Payment
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <br />
+          <!-- Wallets -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseFour"
+                aria-expanded="false"
+                aria-controls="collapseFour"
+              >
+                Wallets
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="walletSelect" class="form-label">Select Your Wallet</label>
+                    <select class="form-select" id="walletSelect" required>
+                      <option value="" disabled selected>Select your wallet</option>
+                      <option value="wallet1">PayTM</option>
+                      <option value="wallet2">Google Pay</option>
+                      <option value="wallet3">Phone Pay</option>
+                    </select>
+                  </div>
+                  <div class="d-grid">
+                    <button
+                      type="button"
+                      class="btn btn-info text-primary w-50 proceed-payment"
+                      data-payment-method="Wallets"
+                    >
+                      Proceed to Payment
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End of Accordion -->
+      </div>
+
+      <!-- Payment Summary Column -->
+      <div class="col-lg-6 ps-3 col-sm-12">
+        <div class="card bg-info">
+          <div class="card-body">
+            <h5 class="card-title">Payment Summary</h5>
+            <p class="card-text">
+              Selected Payment Method:
+              <strong id="selectedPaymentMethod">None</strong>
+            </p>
+            <p class="card-text">
+              Total Amount: <strong>₹999</strong>
+            </p>
+            <hr />
+            <h6>Payment Details:</h6>
+            <ul class="list-unstyled">
+              <li>Service: Mobile Recharge</li>
+              <li>Plan: Basic Plan</li>
+              <li>Validity: 28 Days</li>
+            </ul>
+            <hr />
+            <button class="btn btn-primary" id="confirmPayment">
+              Confirm Payment
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Accordion and Payment Summary Row -->
+  </div>
+  <!-- End of Main Container -->
+
+  <br /><br /><br />
+
+  <!-- Footer (full width, at end of page) -->
+  <footer class="text-center bg-primary text-light py-3 mt-5 w-100">
+    <p>&copy; 2025 Mobi-Comm Services Ltd. | Connecting People, Anytime, Anywhere.</p>
+    <p>Customer Support: 1800-123-456 | Email: support@mobi-comm.com</p>
+    <p>
+      <a href="#" class="text-info text-decoration-none">Privacy Policy</a> |
+      <a href="#" class="text-info text-decoration-none">Terms &amp; Conditions</a> |
+      <a href="#" class="text-info text-decoration-none">Refund Policy</a>
+    </p>
+    <p>
+      Follow us:
+      <a href="#" class="text-white text-decoration-none me-2"><i class="bi bi-facebook"></i></a>
+      <a href="#" class="text-white text-decoration-none me-2"><i class="bi bi-twitter"></i></a>
+      <a href="#" class="text-white text-decoration-none me-2"><i class="bi bi-instagram"></i></a>
+      <a href="#" class="text-white text-decoration-none"><i class="bi bi-linkedin"></i></a>
+    </p>
+  </footer>
+
+  <!-- Email Confirmation Modal -->
+  <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="emailModalLabel">Confirm Your Email</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="emailForm">
+            <div class="mb-3">
+              <label for="email" class="form-label">Enter your email address for confirmation:</label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com" required />
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Send Confirmation</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    // Simulate user login status (for demonstration purposes)
+    const isLoggedIn = false; // Change to true if the user is logged in
+
+    // Update payment summary based on selected payment method
+    const paymentButtons = document.querySelectorAll('.proceed-payment');
+    const selectedPaymentMethod = document.getElementById('selectedPaymentMethod');
+
+    paymentButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        selectedPaymentMethod.textContent = button.getAttribute('data-payment-method');
+      });
+    });
+
+    // Handle email form submission
+    const emailForm = document.getElementById('emailForm');
+    emailForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      alert(`Confirmation email sent to: ${email}`);
+      if (isLoggedIn) {
+        window.location.href = './Profile.html'; // Redirect to profile page
+      } else {
+        window.location.href = './Guest.html'; // Redirect to guest page
+      }
+      const emailModal = bootstrap.Modal.getInstance(document.getElementById('emailModal'));
+      emailModal.hide();
+    });
+
+    // Handle confirm payment button click
+    const confirmPaymentButton = document.getElementById('confirmPayment');
+    confirmPaymentButton.addEventListener('click', () => {
+      const emailModal = new bootstrap.Modal(document.getElementById('emailModal'));
+      emailModal.show();
+    });
+  </script>
+</body>
+</html>

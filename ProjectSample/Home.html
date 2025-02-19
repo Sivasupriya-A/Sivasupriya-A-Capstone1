@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="/css/main.min.css" rel="stylesheet" >
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary fixed-top">
+        <div class="container-fluid">
+        <a class="navbar-brand text-light " href="#me">Mobi-Comm Service Ltd</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle text-light" aria-current="page" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">View Plans</a>
+                      <ul class="dropdown-menu bg-warning" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item text-primary" href="#pplan"><b>Popular Plans</b></a></li>
+                        <li><a class="dropdown-item text-primary" href="#vplan"><b>Validity Plans</b></a></li>
+                        <li><a class="dropdown-item text-primary" href="#dplan"><b>Data Plans</b></a></li>
+                        <li><a class="dropdown-item text-primary" href="#uplan"><b>Unlimited Plans</b></a></li>
+                      </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-light" aria-current="page" href="/ProjectSample/LoginHome.html">Account</a>
+                    </li>
+                    <form class="d-flex">
+                      <input class="form-control me-2" type="search" placeholder="Search Plans" aria-label="Search">
+                      <button class="btn btn-outline-warning" type="submit">Search</button>
+                    </form>
+            <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="/ProjectSample/Login.html">Logout</a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav><br><br><br><br>
+    <h3 class="text-center text-primary">You might also like!!</h3>
+    <div class="container me-5 mt-5">
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"
+            style="width: 1200px; border-radius: 15px; overflow:hidden">
+        <div class="carousel-inner">
+  
+          <div class="carousel-item active">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+              <div class="col" style="max-width: 500px;">
+                  <div class="card bg-white">
+                      <div class="card-body">
+                          <h6 class="card-title  text-black bg-secondary border rounded p-0 d-inline-block">Popular Plan</h6><br>
+                          <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.2999</h4>
+                          <hr>
+                          <p><strong>Data:</strong> 2.5 GB/Day</p>
+                          <p><strong>Validity:</strong> 365 Days</p>
+                          <div class="d-flex justify-content-between">
+                              <button class="btn btn-sm btn-primary text-white" data-bs-toggle="modal" data-bs-target="#myModal">Recharge</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="col" style="max-width: 500px;">
+                  <div class="card bg-white">
+                      <div class="card-body">
+                          <h6 class="card-title  text-black bg-secondary border rounded p-0 d-inline-block">Popular Plan</h6><br>
+                          <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.2999</h4>
+                          <hr>
+                          <p><strong>Data:</strong> 2.5 GB/Day</p>
+                          <p><strong>Validity:</strong> 365 Days</p>
+                          <div class="d-flex justify-content-between">
+                              <button class="btn btn-sm btn-primary text-white" data-bs-toggle="modal" data-bs-target="#myModal">Recharge</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="carousel-item" >
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+              <div class="col" style="max-width: 500px;">
+                  <div class="card bg-white" style="box-shadow: black;">
+                      <div class="card-body">
+                          <h6 class="card-title  text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
+                          <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.199</h4>
+                          <hr>
+                          <p><strong>Data:</strong> 1GB/Day</p>
+                          <p><strong>Validity:</strong> 28 Days</p>
+                          <div class="d-flex justify-content-between">
+                              <button class="btn btn-sm btn-primary">Recharge</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+  
+              <div class="col" style="max-width: 500px;">
+                  <div class="card bg-white">
+                      <div class="card-body">
+                          <h6 class="card-title  text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
+                          <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
+                          <hr>
+                          <p><strong>Data:</strong> 1GB/Day</p>
+                          <p><strong>Validity:</strong> 42 Days</p>
+                          <div class="d-flex justify-content-between">
+                              <button class="btn btn-sm btn-primary">Recharge</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="carousel-item">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+              <div class="col" style="max-width: 500px;">
+                  <div class="card bg-white" style="box-shadow: black;">
+                      <div class="card-body">
+                          <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6><br>
+                          <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.399</h4>
+                          <hr>
+                          <p><strong>Data:</strong> 1GB/Day</p>
+                          <p><strong>Validity:</strong> 56 Days</p>
+                          <div class="d-flex justify-content-between">
+                              <button class="btn btn-sm btn-primary">Recharge</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+  
+              <div class="col" style="max-width: 500px;">
+                  <div class="card bg-white" style="box-shadow: black;">
+                      <div class="card-body">
+                          <h6 class="card-title  text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6><br>
+                          <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.499</h4>
+                          <hr>
+                          <p><strong>Data:</strong> 2GB/Day</p>
+                          <p><strong>Validity:</strong> 56 Days</p>
+                          <div class="d-flex justify-content-between">
+                              <button class="btn btn-sm btn-primary">Recharge</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+  
+      </div>
+      <br>
+  </div>
+  <hr><br>
+  
+      <div class="container container-fluid mt-3 " >
+        <h3 class="text-center text-primary" id="pplan">Popular Plans</h3><br><br>
+        <table class="table table-warning ">
+          <thead >
+            <tr >
+              <th class="text-primary bg-dark ps-3">Plans</th> 
+              <th class="text-primary bg-dark">Validity</th>
+              <th class="text-primary bg-dark">Cost</th> 
+            </tr>
+          </thead>
+          <tbody>
+            <tr >
+              <td class="ps-3 pt-3">Validity Plan/1GB per day<br><br><button class="btn btn-primary btn-sm">Buy</button></td>
+              <td class="pt-3">84 days</td>
+              <td class="pt-3">Rs.499/-</td>
+            </tr>
+            <tr>
+              <td class="ps-3 pt-3">Weekend Plan/2GB on weekends<br><br><button class="btn btn-primary btn-sm">Buy</button></td>
+              <td>4 weeks</td>
+              <td>Rs.599/-</td>
+            </tr>
+            <tr>
+              <td class="ps-3 pt-3">Data Plan/1GB per day<br><br><button class="btn btn-primary btn-sm">Buy</button></td>
+              <td>2 days</td>
+              <td>Rs.29/-</td>
+            </tr>
+            <tr>
+              <td class="ps-3 pt-3">Unlimited Plan<br><br><button class="btn btn-primary btn-sm">Buy</button></td>
+              <td>56 days</td>
+              <td>Rs.1499/-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div><br><hr><br>
+      <h3 id="vplan" class="text-center text-primary">Validity Plans</h3><br>
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center pb-3">
+        <div class="col" >
+            <div class="card bg-white">
+                <div class="card-body">
+                    <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Validity Plan</h6><br>
+                    <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.199</h4>
+                    <hr>
+                    <p><strong>Data:</strong> 1GB/Day</p>
+                    <p><strong>Validity:</strong> 28 Days</p>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-sm btn-primary">Recharge</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col" >
+            <div class="card bg-white">
+                <div class="card-body">
+                    <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Validity Plan</h6><br>
+                    <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
+                    <hr>
+                    <p><strong>Data:</strong> 1GB/Day</p>
+                    <p><strong>Validity:</strong> 42 Days</p>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-sm btn-primary">Recharge</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card bg-white">
+                <div class="card-body">
+                    <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Validity Plan</h6><br>
+                    <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
+                    <hr>
+                    <p><strong>Data:</strong> 1GB/Day</p>
+                    <p><strong>Validity:</strong> 42 Days</p>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-sm btn-primary">Recharge</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center pb-3">
+      <div class="col" >
+          <div class="card bg-white">
+              <div class="card-body">
+                  <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Validity Plan</h6><br>
+                  <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.199</h4>
+                  <hr>
+                  <p><strong>Data:</strong> 1GB/Day</p>
+                  <p><strong>Validity:</strong> 28 Days</p>
+                  <div class="d-flex justify-content-between">
+                      <button class="btn btn-sm btn-primary">Recharge</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="col" >
+          <div class="card bg-white">
+              <div class="card-body">
+                  <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Validity Plan</h6><br>
+                  <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
+                  <hr>
+                  <p><strong>Data:</strong> 1GB/Day</p>
+                  <p><strong>Validity:</strong> 42 Days</p>
+                  <div class="d-flex justify-content-between">
+                      <button class="btn btn-sm btn-primary">Recharge</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="col">
+          <div class="card bg-white">
+              <div class="card-body">
+                  <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Validity Plan</h6><br>
+                  <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
+                  <hr>
+                  <p><strong>Data:</strong> 1GB/Day</p>
+                  <p><strong>Validity:</strong> 42 Days</p>
+                  <div class="d-flex justify-content-between">
+                      <button class="btn btn-sm btn-primary">Recharge</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+         <br><hr><br>
+         <h3 id="dplan" class="text-center text-primary">Data Plans</h3><br>
+         <div class="container">
+          <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center pb-3">
+            <div class="col" >
+                <div class="card bg-white">
+                    <div class="card-body">
+                        <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6><br>
+                        <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.199</h4>
+                        <hr>
+                        <p><strong>Data:</strong> 1GB/Day</p>
+                        <p><strong>Validity:</strong> 28 Days</p>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-sm btn-primary">Recharge</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col" >
+                <div class="card bg-white">
+                    <div class="card-body">
+                        <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6><br>
+                        <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
+                        <hr>
+                        <p><strong>Data:</strong> 1GB/Day</p>
+                        <p><strong>Validity:</strong> 42 Days</p>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-sm btn-primary">Recharge</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col">
+                <div class="card bg-white">
+                    <div class="card-body">
+                        <h6 class="card-title  text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6><br>
+                        <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
+                        <hr>
+                        <p><strong>Data:</strong> 1GB/Day</p>
+                        <p><strong>Validity:</strong> 42 Days</p>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-sm btn-primary">Recharge</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center pb-3">
+          <div class="col" >
+              <div class="card bg-white">
+                  <div class="card-body">
+                      <h6 class="card-title  text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6>
+                      <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.199</h4>
+                      <hr>
+                      <p><strong>Data:</strong> 1GB/Day</p>
+                      <p><strong>Validity:</strong> 28 Days</p>
+                      <div class="d-flex justify-content-between">
+                          <button class="btn btn-sm btn-primary">Recharge</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    
+          <div class="col" >
+              <div class="card bg-white">
+                  <div class="card-body">
+                      <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6><br>
+                      <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
+                      <hr>
+                      <p><strong>Data:</strong> 1GB/Day</p>
+                      <p><strong>Validity:</strong> 42 Days</p>
+                      <div class="d-flex justify-content-between">
+                          <button class="btn btn-sm btn-primary">Recharge</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    
+          <div class="col">
+              <div class="card bg-white">
+                  <div class="card-body">
+                      <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6><br>
+                      <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
+                      <hr>
+                      <p><strong>Data:</strong> 1GB/Day</p>
+                      <p><strong>Validity:</strong> 42 Days</p>
+                      <div class="d-flex justify-content-between">
+                          <button class="btn btn-sm btn-primary">Recharge</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+  
+        </div>
+         <br><hr><br>
+         <h3 id="uplan" class="text-center text-primary">Unlimited Plans</h3><br>
+         <div class="container">
+          <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center pb-3">
+            <div class="col" >
+                <div class="card bg-white">
+                    <div class="card-body">
+                        <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
+                        <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.199</h4>
+                        <hr>
+                        <p><strong>Data:</strong> 1GB/Day</p>
+                        <p><strong>Validity:</strong> 28 Days</p>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-sm btn-primary">Recharge</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col" >
+                <div class="card bg-white">
+                    <div class="card-body">
+                        <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
+                        <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
+                        <hr>
+                        <p><strong>Data:</strong> 1GB/Day</p>
+                        <p><strong>Validity:</strong> 42 Days</p>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-sm btn-primary">Recharge</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col">
+                <div class="card bg-white">
+                    <div class="card-body">
+                        <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
+                        <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
+                        <hr>
+                        <p><strong>Data:</strong> 1GB/Day</p>
+                        <p><strong>Validity:</strong> 42 Days</p>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-sm btn-primary">Recharge</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center pb-3">
+          <div class="col" >
+              <div class="card bg-white">
+                  <div class="card-body">
+                      <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
+                      <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.199</h4>
+                      <hr>
+                      <p><strong>Data:</strong> 1GB/Day</p>
+                      <p><strong>Validity:</strong> 28 Days</p>
+                      <div class="d-flex justify-content-between">
+                          <button class="btn btn-sm btn-primary">Recharge</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    
+          <div class="col" >
+              <div class="card bg-white">
+                  <div class="card-body">
+                      <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
+                      <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
+                      <hr>
+                      <p><strong>Data:</strong> 1GB/Day</p>
+                      <p><strong>Validity:</strong> 42 Days</p>
+                      <div class="d-flex justify-content-between">
+                          <button class="btn btn-sm btn-primary">Recharge</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    
+          <div class="col">
+              <div class="card bg-white">
+                  <div class="card-body">
+                      <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
+                      <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
+                      <hr>
+                      <p><strong>Data:</strong> 1GB/Day</p>
+                      <p><strong>Validity:</strong> 42 Days</p>
+                      <div class="d-flex justify-content-between">
+                          <button class="btn btn-sm btn-primary">Recharge</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  
+         <br>
+         <footer class="text-center bg-primary text-light py-3 bg-opacity-80">
+          <p>&copy; 2025 Mobi-Comm Services Ltd. | Connecting People, Anytime, Anywhere.</p>
+          <p>Customer Support: 1800-123-456 | Email: support@mobi-comm.com</p>
+          <p>
+              <a href="#" class="text-info text-decoration-none">Privacy Policy</a> | 
+              <a href="#" class="text-info text-decoration-none">Terms & Conditions</a> | 
+              <a href="#" class="text-info text-decoration-none">Refund Policy</a>
+          </p>
+          <p>Follow us: 
+              <a href="#" class="text-white text-decoration-none me-2"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-white text-decoration-none me-2"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="text-white text-decoration-none me-2"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="text-white text-decoration-none"><i class="bi bi-linkedin"></i></a>
+          </p>
+          </footer>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    // Select all buttons with the text "Recharge"
+    document.querySelectorAll("button").forEach(button => {
+        if (button.innerText.trim().toLowerCase() === "recharge") {
+            button.addEventListener("click", function () {
+                window.location.href = "payment.html";
+            });
+        }
+    });
+    document.querySelectorAll("button").forEach(button => {
+        if (button.innerText.trim().toLowerCase() === "buy") {
+            button.addEventListener("click", function () {
+                window.location.href = "payment.html";
+            });
+        }
+    });
+});
+
+      </script>
+</body>
+</html>
