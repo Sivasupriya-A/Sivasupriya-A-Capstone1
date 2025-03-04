@@ -25,14 +25,6 @@
       background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
       color: #333;
     }
-    .navbar.bg-primary {
-      background: rgba(255, 255, 255, 0.2) !important;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    .navbar a {
-      color: var(--bs-primary) !important;
-    }
     /* Layout */
     .container {
       display: flex;
@@ -221,14 +213,8 @@
     <div class="container-fluid">
       <a class="navbar-brand text-light" href="#me">
         <img src="/images/Logo4.png" alt="logo" class="rounded-circle" style="width: 50px;" />
-        Mobi-Comm Services
+        Mobi-Comm Services Ltd
       </a>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active text-light" aria-current="page" href="/ProjectSample/Home.html">Change Plan</a>
-          </li>
-        </ul></div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
               data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
               aria-expanded="false" aria-label="Toggle navigation">
@@ -386,10 +372,10 @@
           <div class="selected-plan-info">
               <h4 class="mb-3">${selectedPlan.name}</h4>
               <p class="mb-2"><strong>Phone Number:</strong> ${phoneNumber}</p>
-              <p class="mb-2"><strong>Plan Name:</strong> ${selectedPlan.name}</p>
+              <p class="mb-2"><strong>Plan ID:</strong> ${selectedPlan.plan_id}</p>
+              <p class="mb-2"><strong>Category:</strong> ${selectedPlan.category}</p>
               <p class="mb-2"><strong>Details:</strong> ${selectedPlan.details}</p>
-              <p class="mb-2"><strong>Price:</strong>  ₹ ${selectedPlan.price}</p>
-              <p class="mb-3"><strong>Validity:</strong>${selectedPlan.validity}</p>
+              <p class="mb-3"><strong>Amount:</strong> ₹${selectedPlan.amount}</p>
           </div>
         `;
       } else {

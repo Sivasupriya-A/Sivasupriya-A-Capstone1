@@ -1,0 +1,122 @@
+[
+    {
+      "id": 1,
+      "category": "popular",
+      "price": 2999,
+      "data": "2.5 GB/Day",
+      "validity": 365,
+      "calls": "Unlimited calls"
+    },
+    {
+      "id": 2,
+      "category": "popular",
+      "price": 1499,
+      "data": "2 GB/Day",
+      "validity": 180,
+      "calls": "Unlimited calls"
+    },
+    {
+      "id": 3,
+      "category": "popular",
+      "price": 699,
+      "data": "1.5 GB/Day",
+      "validity": 84,
+      "calls": "Unlimited calls"
+    },
+    {
+      "id": 4,
+      "category": "data",
+      "price": 399,
+      "data": "1 GB/Day",
+      "validity": 56,
+      "calls": "Unlimited calls"
+    },
+    {
+      "id": 5,
+      "category": "data",
+      "price": 499,
+      "data": "2 GB/Day",
+      "validity": 56,
+      "calls": "Unlimited calls"
+    },
+    {
+      "id": 6,
+      "category": "data",
+      "price": 599,
+      "data": "3 GB/Day",
+      "validity": 56,
+      "calls": "Unlimited calls"
+    },
+    {
+      "id": 7,
+      "category": "validity",
+      "price": 99,
+      "data": "200 MB/Day",
+      "validity": 28,
+      "calls": "Limited calls"
+    },
+    {
+      "id": 8,
+      "category": "validity",
+      "price": 179,
+      "data": "500 MB/Day",
+      "validity": 28,
+      "calls": "Unlimited calls"
+    },
+    {
+      "id": 9,
+      "category": "validity",
+      "price": 249,
+      "data": "1 GB/Day",
+      "validity": 28,
+      "calls": "Unlimited calls"
+    },
+    {
+      "id": 10,
+      "category": "unlimited",
+      "price": 199,
+      "data": "1 GB/Day",
+      "validity": 28,
+      "calls": "Unlimited calls"
+    },
+    {
+      "id": 11,
+      "category": "unlimited",
+      "price": 299,
+      "data": "1 GB/Day",
+      "validity": 42,
+      "calls": "Unlimited calls"
+    },
+    {
+      "id": 12,
+      "category": "unlimited",
+      "price": 349,
+      "data": "1.5 GB/Day",
+      "validity": 42,
+      "calls": "Unlimited calls"
+    },
+    {
+      "id": 13,
+      "category": "exclusive",
+      "price": 199,
+      "data": "1 GB/Day",
+      "validity": 28,
+      "calls": "Unlimited calls"
+    },
+    {
+      "id": 14,
+      "category": "exclusive",
+      "price": 299,
+      "data": "1 GB/Day",
+      "validity": 42,
+      "calls": "Unlimited calls"
+    },
+    {
+      "id": 15,
+      "category": "exclusive",
+      "price": 399,
+      "data": "1.5 GB/Day",
+      "validity": 56,
+      "calls": "Unlimited calls"
+    }
+  ]

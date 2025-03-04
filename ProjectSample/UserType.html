@@ -1,117 +1,804 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Selection</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="/css/main.min.css" rel="stylesheet" >
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f8f9fa;
-            flex-direction: column;
-            position: relative;
-        }
-        .banner-container {
-    position: relative;
-    width: 100%;
-    text-align: center;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Validate Number</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+  />
+  <link href="/css/main.min.css" rel="stylesheet" />
+  <!-- Using a professional font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      font-family: "Open Sans", sans-serif;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      background-color: #ffffff;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Spacing for carousel container (accounting for fixed navbar) */
+    .carousel-container {
+      margin-top: 100px;
+    }
 
-.banner {
-    width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-    border-radius: 10px;
-    opacity: 0.5;
-}
-
-.container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    width: 80%;
-    max-width: 500px;
-}
-        footer {
-    width: 100%;
-    padding: 20px 0;  /* Increased padding for better visibility */
-    text-align: center;
-    background-color: #007bff; /* Ensure it maintains its background */
-    color: white;
-    position: relative; /* Ensures it's placed properly */
-    bottom: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Ensures footer stays at bottom */
-}
-
-.container-1 {
-    flex: 1; /* Allows content to take up available space */
-}
-
-    </style>
+    /* Navbar styling – preserving original colors */
+    nav.navbar {
+      animation: slideDown 0.8s ease-out;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      background: #0d6efd;
+    }
+    nav.navbar .navbar-brand {
+      font-weight: 700;
+    }
+    nav.navbar .nav-link {
+      transition: color 0.3s ease, transform 0.3s ease;
+      font-weight: 600;
+    }
+    nav.navbar .nav-link:hover {
+      color: #d1e7dd;
+      transform: translateY(-2px);
+    }
+    
+    /* Original Image and Card styling */
+    .img-fluid {
+      width: 300px; 
+      height: 200px; 
+      object-fit: cover; 
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeIn 1s ease-in-out; }
+    @keyframes zoomIn {
+      from { transform: scale(0.95); }
+      to { transform: scale(1); }
+    }
+    .card {
+      animation: zoomIn 0.8s ease-in-out;
+      transition: transform 0.3s ease-in-out;
+    }
+    .card:hover { transform: scale(1.05); }
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .image-zoom {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .visible { opacity: 1; transform: translateX(0); }
+    .image-visible { opacity: 1; transform: scale(1); }
+    
+    /* Get Started Form Styling */
+    #numberForm {
+      border-radius: 10px;
+      background-color: #cdd19b;
+      padding: 20px;
+      text-align: center;
+    }
+    #phone_number {
+      width: 80%;
+      padding: 8px;
+      border: 1px solid #522b3b;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+    #userlogin {
+      background-color: var(--bs-primary);
+      color: #fff;
+      border: none;
+    }
+    #userlogin:hover {
+      background-color: #0b5ed7;
+      transform: scale(1.05);
+    }
+    #error { font-size: 14px; }
+    
+    /* Enhanced Carousel Styles */
+    .carousel-inner {
+      border-radius: 15px;
+      overflow: hidden;
+      perspective: 1000px;
+    }
+    .carousel-img {
+      height: 500px;
+      object-fit: cover;
+      filter: brightness(0.75);
+      transition: transform 0.5s ease;
+    }
+    .carousel-img:hover { transform: scale(1.05); }
+    .custom-caption {
+      background: rgba(0,0,0,0.45);
+      padding: 20px;
+      border-radius: 10px;
+      animation: slideInUp 1s ease-out;
+    }
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-text {
+      animation: fadeInLeft 1s ease-out;
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .animate-text2 {
+      animation: fadeInRight 1s ease-out;
+    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .animate-button {
+      animation: zoomInButton 1s ease-out;
+      animation-delay: 0.5s;
+      opacity: 0;
+      display: inline-block;
+    }
+    @keyframes zoomInButton {
+      from { opacity: 0; transform: scale(0.5); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    /* Navbar slideDown keyframe */
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    /* Remove default carousel slide transition */
+    .carousel-item {
+      transition: none !important;
+    }
+    
+    /* New Custom 3D Flip Animation for carousel images */
+    @keyframes uniqueSlideTransition {
+      0% { opacity: 0; transform: perspective(1000px) rotateY(90deg) scale(0.8); }
+      50% { opacity: 1; transform: perspective(1000px) rotateY(-10deg) scale(1.05); }
+      100% { opacity: 1; transform: perspective(1000px) rotateY(0deg) scale(1); }
+    }
+    .carousel-item.active .carousel-img {
+      animation: uniqueSlideTransition 1s ease forwards;
+      backface-visibility: hidden;
+    }
+    .navbar.bg-primary {
+      background: rgba(255, 255, 255, 0.2) !important;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .navbar a {
+      color: var(--bs-primary) !important;
+    }
+    
+    /* --------------------- New Plans Section --------------------- */
+    .plan-section {
+      margin: 40px auto;
+      text-align: center;
+      padding: 0 15px;
+    }
+    .plan-cards { }
+    
+    /* Attractive Plans Card Style */
+    .plan-card {
+      position: relative;
+      background: linear-gradient(135deg, #ffffff, #e0f7fa);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin: 20px 0;
+    }
+    .plan-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(0,0,0,0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .plan-card:hover::before {
+      opacity: 1;
+    }
+    .plan-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+    .plan-card .imgBx {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+    }
+    .plan-card .imgBx img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .plan-card:hover .imgBx img {
+      transform: scale(1.1);
+    }
+    .plan-card .content {
+      padding: 20px;
+      background: #fff;
+      text-align: center;
+    }
+    .plan-card .content .details h2 {
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .plan-card .content .details h2 span {
+      font-size: 0.9em;
+      font-weight: 400;
+      color: #ff5252;
+      margin-left: 10px;
+    }
+    .plan-card .content .data {
+      display: flex;
+      justify-content: space-around;
+      margin: 15px 0;
+    }
+    .plan-card .content .data h3 {
+      font-size: 1.1em;
+      color: #007bff;
+      margin: 0;
+    }
+    .plan-card .content .data h3 span {
+      font-size: 0.85em;
+      color: #555;
+      margin-left: 5px;
+    }
+    .plan-card .actionBtn {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .plan-card .actionBtn button {
+      padding: 10px 20px;
+      background: linear-gradient(45deg, #ff5252, #ff4081);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      transition: background 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    .plan-card .actionBtn button:hover {
+      transform: scale(1.05);
+    }
+    .plan-card .social-icons {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .plan-card .social-icons a {
+      margin: 0 10px;
+      color: #007bff;
+      font-size: 1.5em;
+      transition: color 0.3s ease;
+    }
+    .plan-card .social-icons a:hover {
+      color: #ff5252;
+    }
+  </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-primary fixed-top">
-
-        <div class="container-fluid">
-          <a class="navbar-brand text-light" href="#">Mobi-Comm Service Ltd</a>
-        </div>
-      </nav><br><br>
-      <div class="banner-container">
-        <img src="/images/carousel3.jpg" alt="Banner Image" class="banner rounded-5">
-        <div class="container bg-info">
-            <h2>Select Your Role</h2>
-            <p>Choose whether you are a Subscriber or an Admin.</p>
-            <div class="d-flex justify-content-center gap-3 mt-3">
-                <button class="btn btn-primary" onclick="selectRole('Subscriber')">Subscriber</button>
-                <button class="btn btn-warning" onclick="selectRole('Admin')">Admin</button>
-            </div>
-            <p class="mt-3" id="selected-role"></p>
-        </div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-primary fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light" href="#me">
+        <img src="/images/Logo4.png" alt="logo" class="rounded-circle" style="width: 50px;" />
+        Mobi-Comm Services Ltd
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon bg-dark"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active text-light" aria-current="page" href="#about">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-light" aria-current="page" href="#faq">FAQ</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <script>
-        function selectRole(role) {
-            document.getElementById("selected-role").innerText = "You selected: " + role;
-            if (role === 'Subscriber') {
-                window.location.href = 'validNumber.html';
-            } else if (role === 'Admin') {
-                window.location.href = 'AdminLogin.html';
-            }
+  </nav>
+  
+  <!-- Enhanced Carousel Section -->
+  <center>
+    <div class="container carousel-container">
+      <div class="row">
+        <div class="col-lg-6 w-100">
+          <div id="carouselEnhanced" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselEnhanced" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselEnhanced" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselEnhanced" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="/images/car3.jpg" class="d-block w-100 carousel-img" alt="Non-Stop OTT Plans" />
+                <div class="carousel-caption custom-caption">
+                  <h1 class="display-7 animate-text">Non-Stop OTT Plans</h1>
+                  <p class="lead animate-text2">Watch your favourite movies breakfree</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="/images/car2.jpg" class="d-block w-100 carousel-img" alt="View Exciting Plans" />
+                <div class="carousel-caption custom-caption">
+                  <h1 class="display-7 animate-text">View Exciting Plans</h1>
+                  <p class="lead animate-text2">Limited offers ending soon...</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="/images/car9.jpg" class="d-block w-100 carousel-img" alt="Recharge and Many More" />
+                <div class="carousel-caption custom-caption">
+                  <h1 class="display-7 animate-text">Recharge and Many More</h1>
+                  <p class="lead animate-text2">Recharge anywhere at anytime</p>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselEnhanced" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselEnhanced" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </center>
+  
+  <!-- Get Started Form -->
+  <div class="container mt-5 w-50 p-4 rounded" id="numberForm">
+    <h2 class="text-center text-primary">Get Started!!</h2>
+    <br />
+    <form class="mt-3">
+      <div class="mb-3">
+        <h5>
+          <label for="phone_number" class="form-label">Enter your mobile number</label>
+        </h5>
+        <input type="text" id="phone_number" placeholder="Enter a valid number" />
+        <button type="submit" id="userlogin" class="btn">Continue</button>
+        <div id="error" class="text-danger mt-2">
+          <span style="color: red;"></span>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <!-- Stay Connected Section -->
+  <br />
+  <hr />
+  <br />
+  <h3 class="text-center text-primary">Stay Connected!! Stay Rewarded!!</h3>
+  <br />
+  <div class="container mt-4">
+    <div class="row text-center">
+      <div class="col-md-4">
+        <div class="card bg-warning h-100 fade-in">
+          <img src="/images/carousel1.jpg" class="card-img-top img-zoom" alt="Image 1" />
+          <div class="card-body">
+            <p class="card-text">
+              <b>Recharge your Mobile..</b><br />
+              View exciting offers
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-warning h-100 fade-in" style="animation-delay: 0.2s;">
+          <img src="/images/carousel3.jpg" class="card-img-top img-zoom" alt="Image 2" />
+          <div class="card-body">
+            <p class="card-text">
+              <b>Get coupons and rewards..</b><br />
+              Add rewards in your wallet
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-warning h-100 fade-in" style="animation-delay: 0.4s;">
+          <img src="/images/carousel2.jpg" class="card-img-top img-zoom" alt="Image 3" />
+          <div class="card-body">
+            <p class="card-text">
+              <b>Prepaid and Postpaid plans..</b><br />
+              Show your love by recharging your families and friends
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- New Plans Section with Attractive Card Style -->
+  <h3 class="text-primary text-center" id="vplan">Validity Plans</h3>
+  <br /><br />
+  <div class="plan-section">
+    <div class="plan-cards">
+      <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center pb-3">
+        <!-- Plan Card 1 -->
+        <div class="col">
+          <div class="plan-card">
+            <div class="imgBx">
+              <img src="/images/plan1.jpg" alt="Plan Image" />
+            </div>
+            <div class="content">
+              <div class="details">
+                <h2>Exclusive Plan <span>Rs.399</span></h2>
+                <div class="data">
+                  <h3>Data: <span>1GB/Day</span></h3>
+                  <h3>Validity: <span>56 Days</span></h3>
+                </div>
+                <div class="actionBtn">
+                  <button onclick="window.location.href='#numberForm'">View Details</button>
+                </div>
+              </div>
+              <div class="social-icons">
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-twitter"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Plan Card 2 -->
+        <div class="col">
+          <div class="plan-card">
+            <div class="imgBx">
+              <img src="/images/plan2.jpg" alt="Plan Image" />
+            </div>
+            <div class="content">
+              <div class="details">
+                <h2>Exclusive Plan <span>Rs.499</span></h2>
+                <div class="data">
+                  <h3>Data: <span>2GB/Day</span></h3>
+                  <h3>Validity: <span>56 Days</span></h3>
+                </div>
+                <div class="actionBtn">
+                  <button onclick="window.location.href='#numberForm'">View Details</button>
+                </div>
+              </div>
+              <div class="social-icons">
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-twitter"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Plan Card 3 -->
+        <div class="col">
+          <div class="plan-card">
+            <div class="imgBx">
+              <img src="/images/plan3.jpg" alt="Plan Image" />
+            </div>
+            <div class="content">
+              <div class="details">
+                <h2>Exclusive Plan <span>Rs.599</span></h2>
+                <div class="data">
+                  <h3>Data: <span>3GB/Day</span></h3>
+                  <h3>Validity: <span>84 Days</span></h3>
+                </div>
+                <div class="actionBtn">
+                  <button onclick="window.location.href='#numberForm'">View Details</button>
+                </div>
+              </div>
+              <div class="social-icons">
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-twitter"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Us Section -->
+  <br />
+  <hr />
+  <div class="container mt-5">
+    <h3 class="text-center text-primary" id="about">About Us</h3>
+    <br /><br />
+    <div class="row align-items-center mb-4">
+      <div class="col-md-6 fade-in-left">
+        <div class="card p-4 shadow bg-info">
+          <h4 class="text-primary">Instant Recharge</h4>
+          <p>Recharge your mobile in seconds with our seamless online payment system.</p>
+        </div>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="/images/ir.jpg" class="img-fluid rounded image-zoom" alt="Instant Recharge" />
+      </div>
+    </div>
+    <div class="row align-items-center mb-4">
+      <div class="col-md-6 text-center order-md-2">
+        <img src="/images/ins.jpg" class="img-fluid rounded image-zoom" alt="Affordable Plans" />
+      </div>
+      <div class="col-md-6 fade-in-right order-md-1">
+        <div class="card p-4 shadow">
+          <h4 class="text-primary">Affordable Plans</h4>
+          <p>Choose from a variety of prepaid plans that suit your needs and budget.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-center mb-4">
+      <div class="col-md-6 fade-in-left">
+        <div class="card p-4 shadow bg-info">
+          <h4 class="text-primary">24/7 Customer Support</h4>
+          <p>Get assistance anytime with our dedicated customer support team.</p>
+        </div>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="/images/cs.jpg" class="img-fluid rounded image-zoom" alt="24/7 Support" />
+      </div>
+    </div>
+    <!-- Our Team Section -->
+    <br />
+    <div class="container mt-5">
+      <h3 class="text-center text-primary">Our Team</h3>
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <div class="card team-card shadow mb-4">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top img-fluid" alt="Team Member 1" />
+            <div class="card-body">
+              <h5 class="card-title">John Doe</h5>
+              <p class="card-text">CEO</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card team-card shadow mb-4">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top img-fluid" alt="Team Member 2" />
+            <div class="card-body">
+              <h5 class="card-title">Jane Smith</h5>
+              <p class="card-text">CTO</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card team-card shadow mb-4">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top img-fluid" alt="Team Member 3" />
+            <div class="card-body">
+              <h5 class="card-title">Alice Johnson</h5>
+              <p class="card-text">COO</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- FAQ Section -->
+  <br /><br /><hr /><br /><br />
+  <h3 id="faq" class="text-center text-primary">FAQ's</h3>
+  <br />
+  <div class="accordion ps-5 pe-5" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" 
+                aria-expanded="true" aria-controls="collapseOne">
+          How can I recharge my mobile number?
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>To recharge your mobile:</strong>
+          <ol>
+            <li>Open the app and navigate to the "Recharge" section.</li>
+            <li>Enter your mobile number and select your operator.</li>
+            <li>Choose a plan or enter a custom amount.</li>
+            <li>Proceed to payment using your preferred method.</li>
+            <li>Once successful, you will receive a confirmation message.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" 
+                aria-expanded="false" aria-controls="collapseTwo">
+          What payment methods are accepted for recharge?
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>We accept the following payment methods:</strong>
+          <ul>
+            <li>Credit/Debit Cards (Visa, Mastercard, RuPay, etc.)</li>
+            <li>UPI (Google Pay, PhonePe, Paytm, etc.)</li>
+            <li>Net Banking</li>
+            <li>Mobile Wallets</li>
+            <li>Auto-pay (for recurring recharges)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" 
+                aria-expanded="false" aria-controls="collapseThree">
+          What should I do if my recharge fails but the amount is deducted?
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>In case of a failed recharge but deducted amount:</strong>
+          <ul>
+            <li>Wait for a few minutes, as sometimes transactions take time to process.</li>
+            <li>If not received within an hour, check the transaction status in the "History" section.</li>
+            <li>If still not credited, contact customer support with your transaction ID.</li>
+            <li>If the amount is deducted, but the recharge isn’t processed, a refund will be initiated within 2-3 working days.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" 
+                aria-expanded="false" aria-controls="collapseFour">
+          How can I check my recharge history?
+        </button>
+      </h2>
+      <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>To check your recharge history:</strong>
+          <ol>
+            <li>Go to the "Transaction History" or "My Recharges" section in the app.</li>
+            <li>You will see a list of your recent recharges, along with payment status.</li>
+            <li>Click on any transaction for more details, including receipt and plan validity.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <br /><br /><hr /><br /><br />
+  <footer>
+    <div class="footer-top justify-content-center">
+      <div class="content-container ps-5 pt-0">
+        <div class="row">
+          <div class="col-md-4">
+            <h5>Mobi-Comm Service Pvt Ltd</h5>
+            <p>Connecting People, Anytime, Anywhere.</p>
+          </div>
+          <div class="col-md-4">
+            <h5>Quick Links</h5>
+            <ul>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">Refund Policy</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Connect With Us</h5>
+            <p>Follow us on social media for the latest updates.</p>
+            <a href="#" class="me-2 text-white"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="me-2 text-white"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="me-2 text-white"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="content-container">
+        <p class="mb-0">&copy; 2025 Mobi-Comm Service Pvt Ltd. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+  <script>
+    // Form submission script
+    document.getElementById("numberForm").addEventListener("submit", async function (event) {
+      event.preventDefault();
+      const phoneNumber = document.getElementById("phone_number").value.trim();
+      const errorMessage = document.querySelector("#error span");
+      errorMessage.textContent = "";
+      if (!/^\d{10}$/.test(phoneNumber)) {
+        errorMessage.textContent = "Please enter a valid 10-digit phone number.";
+        return;
+      }
+      try {
+        const response = await fetch("Users.json");
+        const data = await response.json();
+        const validNumbers = data.users.map(user => user.phone);
+        if (validNumbers.includes(phoneNumber)) {
+          window.location.href = "Home.html";
+        } else {
+          errorMessage.textContent = "The number you entered is not registered with MobiComm.";
         }
-    </script>
+      } catch (error) {
+        errorMessage.textContent = "Error fetching data. Please try again later.";
+        console.error("Error:", error);
+      }
+    });
     
-<footer class="text-center bg-primary text-light py-3 bg-opacity-100">
-    <p>&copy; 2025 Mobi-Comm Services Ltd. | Connecting People, Anytime, Anywhere.</p>
-    <p>Customer Support: 1800-123-456 | Email: support@mobi-comm.com</p>
-    <p>
-        <a href="#" class="text-info text-decoration-none">Privacy Policy</a> | 
-        <a href="#" class="text-info text-decoration-none">Terms & Conditions</a> | 
-        <a href="#" class="text-info text-decoration-none">Refund Policy</a>
-    </p>
-    <p>Follow us: 
-        <a href="#" class="text-white text-decoration-none me-2"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="text-white text-decoration-none me-2"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="text-white text-decoration-none me-2"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="text-white text-decoration-none"><i class="bi bi-linkedin"></i></a>
-    </p>
-    </footer>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    // Scroll animations for fade-in elements
+    document.addEventListener("DOMContentLoaded", function () {
+      function revealElements() {
+        const textElements = document.querySelectorAll(".fade-in-left, .fade-in-right");
+        const imageElements = document.querySelectorAll(".image-zoom");
+        textElements.forEach((element) => {
+          if (element.getBoundingClientRect().top < window.innerHeight - 100) {
+            element.classList.add("visible");
+          }
+        });
+        imageElements.forEach((element) => {
+          if (element.getBoundingClientRect().top < window.innerHeight - 100) {
+            element.classList.add("image-visible");
+          }
+        });
+      }
+      window.addEventListener("scroll", revealElements);
+      revealElements();
+    });
+    
+    // Re-trigger carousel caption animations on slide change
+    const carousel = document.getElementById('carouselEnhanced');
+    carousel.addEventListener('slid.bs.carousel', function () {
+      const activeSlide = carousel.querySelector('.carousel-item.active .custom-caption');
+      activeSlide.style.animation = 'none';
+      activeSlide.offsetHeight;
+      activeSlide.style.animation = '';
+    });
+  </script>
 </body>
 </html>
