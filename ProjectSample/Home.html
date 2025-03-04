@@ -1,531 +1,1006 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link href="/css/main.min.css" rel="stylesheet" >
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mobi-Comm Service</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <link href="/css/main.min.css" rel="stylesheet">
+  <style>
+    /* Navbar Styling */
+    .navbar.bg-primary {
+      background: rgba(255, 255, 255, 0.2) !important;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .navbar a {
+      color: var(--bs-primary) !important;
+    }
+    
+    /* Banner Section */
+    .tales1 {
+      width: 100%;
+      height: 400px;
+      transition: transform 0.5s ease-in-out;
+    }
+    .details {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .btn {
+      background-color: var(--primary-color);
+      color: white;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      background-color: var(--secondary-color) !important;
+      color: rgb(63, 35, 35) !important;
+      transform: scale(1.05);
+    }
+    .tales1:hover { 
+      transform: scale(1.05); 
+    }
+    
+    /* Enhanced Card Styling */
+    .card {
+      background-color: #f7fcc8;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1;
+      border: none;
+      margin-bottom: 20px;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--dark-accent), var(--light-accent));
+      z-index: 2;
+    }
+    
+    /* Category-specific card styling */
+    .card[data-category="popular"]::before {
+      background: linear-gradient(90deg, #ff9966, #ff5e62);
+    }
+    
+    .card[data-category="data"]::before {
+      background: linear-gradient(90deg, #8db8dd, #d8ab81);
+    }
+    
+    .card[data-category="validity"]::before {
+      background: linear-gradient(90deg, #c28592, #988fc9);
+    }
+    
+    .card[data-category="unlimited"]::before {
+      background: linear-gradient(90deg, #fa709a, #fee140);
+    }
+    
+    .card[data-category="exclusive"]::before {
+      background: linear-gradient(90deg, #c471f5, #fa71cd);
+    }
+    
+    /* Badge Styling */
+    .plan-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 8px 12px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: white;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      z-index: 3;
+    }
+    
+    .badge-popular {
+      background: linear-gradient(45deg, #ff9966, #ff5e62);
+    }
+    
+    .badge-data {
+      background: linear-gradient(45deg, #636d0e, #ebe954);
+    }
+    
+    .badge-validity {
+      background: linear-gradient(45deg,#c28592, #392f74);
+    }
+    
+    .badge-unlimited {
+      background: linear-gradient(45deg, #fa709a, #fee140);
+    }
+    
+    .badge-exclusive {
+      background: linear-gradient(45deg, #ab75ca, #f7a9dd);
+    }
+    
+    /* Price Tag Styling */
+    .price-tag {
+      display: inline-block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      background-color: rgba(0, 0, 0, 0.05);
+      color: var(--primary-color);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .price-tag::before {
+      content: "₹";
+      font-size: 1rem;
+      vertical-align: top;
+      margin-right: 2px;
+    }
+    
+    /* Feature Icons */
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .feature-icon {
+      margin-right: 10px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.05);
+      color: var(--primary-color);
+    }
+    
+    /* Recharge Button */
+    .recharge-btn {
+      width: 50%;
+      color: #33161c;
+      padding: 10px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 15px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border: 2px solid #33161c; /* Added outline for all recharge buttons */
+    }
+    
+    .recharge-btn::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: rgba(143, 84, 84, 0.753);
+      transition: all 0.3s ease;
+      z-index: -1;
+    }
+    
+    .recharge-btn:hover::after {
+      height: 100%;
+    }
+    
+    /* Card Hover Effects */
+    .card:hover .price-tag {
+      transform: scale(1.05);
+    }
+    
+    /* Plan Section Layout */
+    .plan-section {
+      margin-bottom: 60px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .plan-cards {
+      width: 100%;
+    }
+    
+    /* Carousel Styling */
+    .carousel-item .card {
+      margin: 0 auto;
+    }
+    
+    /* Filter Buttons */
+    .filter-btn {
+      border-radius: 30px;
+      padding: 8px 16px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      color: rgb(59, 31, 31);
+    }
+    
+    /* Fixed: Added hover style for filter buttons to change text color to primary */
+    .filter-btn:hover {
+      color: var(--bs-primary) !important;
+    }
+    
+    .filter-btn.active {
+      background-color: rgb(175, 189, 114);
+      color: #33161c;
+    }
+    
+    /* Animations */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-fadeInUp {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    .animate-pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    /* Staggered Animation for Cards */
+    .card-container {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .card-container.visible {
+      animation: fadeInUp 0.5s ease forwards;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .plan-section {
+        flex-direction: column;
+      }
+      
+      #sortFilter {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      #adjustableFilter {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-primary fixed-top">
-        <div class="container-fluid">
-        <a class="navbar-brand text-light " href="#me">Mobi-Comm Service Ltd</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link active dropdown-toggle text-light" aria-current="page" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">View Plans</a>
-                      <ul class="dropdown-menu bg-warning" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item text-primary" href="#pplan"><b>Popular Plans</b></a></li>
-                        <li><a class="dropdown-item text-primary" href="#vplan"><b>Validity Plans</b></a></li>
-                        <li><a class="dropdown-item text-primary" href="#dplan"><b>Data Plans</b></a></li>
-                        <li><a class="dropdown-item text-primary" href="#uplan"><b>Unlimited Plans</b></a></li>
-                      </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" href="/ProjectSample/LoginHome.html">Account</a>
-                    </li>
-                    <form class="d-flex">
-                      <input class="form-control me-2" type="search" placeholder="Search Plans" aria-label="Search">
-                      <button class="btn btn-outline-warning" type="submit">Search</button>
-                    </form>
-            <li class="nav-item">
-                <a class="nav-link active text-light" aria-current="page" href="/ProjectSample/Login.html">Logout</a>
-            </li>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <a href="/ProjectSample/validNumber.html">
+      <i class="bi bi-arrow-left fs-4 text-primary"></i>
+    </a>
+    <div class="container-fluid">
+      <a class="navbar-brand text-light" href="#me">
+        <img src="/images/Logo4.png" alt="logo" class="rounded-circle" style="width: 50px;" />
+        Mobi-Comm Service 
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active text-light" aria-current="page" href="#bp">Exclusive Plans</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle text-light" href="#" id="navbarDropdown" 
+               role="button" data-bs-toggle="dropdown" aria-expanded="false">View Plans</a>
+            <ul class="dropdown-menu bg-secondary" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item text-primary" href="#pplan"><b>Popular Plans</b></a></li>
+              <li><a class="dropdown-item text-primary" href="#vplan"><b>Validity Plans</b></a></li>
+              <li><a class="dropdown-item text-primary" href="#dplan"><b>Data Plans</b></a></li>
+              <li><a class="dropdown-item text-primary" href="#uplan"><b>Unlimited Plans</b></a></li>
             </ul>
-        </div>
-        </div>
-    </nav><br><br><br><br>
-    <h3 class="text-center text-primary">You might also like!!</h3>
-    <div class="container me-5 mt-5">
-      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"
-            style="width: 1200px; border-radius: 15px; overflow:hidden">
-        <div class="carousel-inner">
-  
-          <div class="carousel-item active">
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-              <div class="col" style="max-width: 500px;">
-                  <div class="card bg-white">
-                      <div class="card-body">
-                          <h6 class="card-title  text-black bg-secondary border rounded p-0 d-inline-block">Popular Plan</h6><br>
-                          <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.2999</h4>
-                          <hr>
-                          <p><strong>Data:</strong> 2.5 GB/Day</p>
-                          <p><strong>Validity:</strong> 365 Days</p>
-                          <div class="d-flex justify-content-between">
-                              <button class="btn btn-sm btn-primary text-white" data-bs-toggle="modal" data-bs-target="#myModal">Recharge</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-              <div class="col" style="max-width: 500px;">
-                  <div class="card bg-white">
-                      <div class="card-body">
-                          <h6 class="card-title  text-black bg-secondary border rounded p-0 d-inline-block">Popular Plan</h6><br>
-                          <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.2999</h4>
-                          <hr>
-                          <p><strong>Data:</strong> 2.5 GB/Day</p>
-                          <p><strong>Validity:</strong> 365 Days</p>
-                          <div class="d-flex justify-content-between">
-                              <button class="btn btn-sm btn-primary text-white" data-bs-toggle="modal" data-bs-target="#myModal">Recharge</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-  
-          <div class="carousel-item" >
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-              <div class="col" style="max-width: 500px;">
-                  <div class="card bg-white" style="box-shadow: black;">
-                      <div class="card-body">
-                          <h6 class="card-title  text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
-                          <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.199</h4>
-                          <hr>
-                          <p><strong>Data:</strong> 1GB/Day</p>
-                          <p><strong>Validity:</strong> 28 Days</p>
-                          <div class="d-flex justify-content-between">
-                              <button class="btn btn-sm btn-primary">Recharge</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-  
-              <div class="col" style="max-width: 500px;">
-                  <div class="card bg-white">
-                      <div class="card-body">
-                          <h6 class="card-title  text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
-                          <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
-                          <hr>
-                          <p><strong>Data:</strong> 1GB/Day</p>
-                          <p><strong>Validity:</strong> 42 Days</p>
-                          <div class="d-flex justify-content-between">
-                              <button class="btn btn-sm btn-primary">Recharge</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-  
-          <div class="carousel-item">
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-              <div class="col" style="max-width: 500px;">
-                  <div class="card bg-white" style="box-shadow: black;">
-                      <div class="card-body">
-                          <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6><br>
-                          <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.399</h4>
-                          <hr>
-                          <p><strong>Data:</strong> 1GB/Day</p>
-                          <p><strong>Validity:</strong> 56 Days</p>
-                          <div class="d-flex justify-content-between">
-                              <button class="btn btn-sm btn-primary">Recharge</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-  
-              <div class="col" style="max-width: 500px;">
-                  <div class="card bg-white" style="box-shadow: black;">
-                      <div class="card-body">
-                          <h6 class="card-title  text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6><br>
-                          <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.499</h4>
-                          <hr>
-                          <p><strong>Data:</strong> 2GB/Day</p>
-                          <p><strong>Validity:</strong> 56 Days</p>
-                          <div class="d-flex justify-content-between">
-                              <button class="btn btn-sm btn-primary">Recharge</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-  
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-  
-      </div>
-      <br>
-  </div>
-  <hr><br>
-  
-      <div class="container container-fluid mt-3 " >
-        <h3 class="text-center text-primary" id="pplan">Popular Plans</h3><br><br>
-        <table class="table table-warning ">
-          <thead >
-            <tr >
-              <th class="text-primary bg-dark ps-3">Plans</th> 
-              <th class="text-primary bg-dark">Validity</th>
-              <th class="text-primary bg-dark">Cost</th> 
-            </tr>
-          </thead>
-          <tbody>
-            <tr >
-              <td class="ps-3 pt-3">Validity Plan/1GB per day<br><br><button class="btn btn-primary btn-sm">Buy</button></td>
-              <td class="pt-3">84 days</td>
-              <td class="pt-3">Rs.499/-</td>
-            </tr>
-            <tr>
-              <td class="ps-3 pt-3">Weekend Plan/2GB on weekends<br><br><button class="btn btn-primary btn-sm">Buy</button></td>
-              <td>4 weeks</td>
-              <td>Rs.599/-</td>
-            </tr>
-            <tr>
-              <td class="ps-3 pt-3">Data Plan/1GB per day<br><br><button class="btn btn-primary btn-sm">Buy</button></td>
-              <td>2 days</td>
-              <td>Rs.29/-</td>
-            </tr>
-            <tr>
-              <td class="ps-3 pt-3">Unlimited Plan<br><br><button class="btn btn-primary btn-sm">Buy</button></td>
-              <td>56 days</td>
-              <td>Rs.1499/-</td>
-            </tr>
-          </tbody>
-        </table>
-      </div><br><hr><br>
-      <h3 id="vplan" class="text-center text-primary">Validity Plans</h3><br>
-<div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center pb-3">
-        <div class="col" >
-            <div class="card bg-white">
-                <div class="card-body">
-                    <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Validity Plan</h6><br>
-                    <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.199</h4>
-                    <hr>
-                    <p><strong>Data:</strong> 1GB/Day</p>
-                    <p><strong>Validity:</strong> 28 Days</p>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-sm btn-primary">Recharge</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col" >
-            <div class="card bg-white">
-                <div class="card-body">
-                    <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Validity Plan</h6><br>
-                    <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
-                    <hr>
-                    <p><strong>Data:</strong> 1GB/Day</p>
-                    <p><strong>Validity:</strong> 42 Days</p>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-sm btn-primary">Recharge</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card bg-white">
-                <div class="card-body">
-                    <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Validity Plan</h6><br>
-                    <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
-                    <hr>
-                    <p><strong>Data:</strong> 1GB/Day</p>
-                    <p><strong>Validity:</strong> 42 Days</p>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-sm btn-primary">Recharge</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center pb-3">
-      <div class="col" >
-          <div class="card bg-white">
-              <div class="card-body">
-                  <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Validity Plan</h6><br>
-                  <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.199</h4>
-                  <hr>
-                  <p><strong>Data:</strong> 1GB/Day</p>
-                  <p><strong>Validity:</strong> 28 Days</p>
-                  <div class="d-flex justify-content-between">
-                      <button class="btn btn-sm btn-primary">Recharge</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="col" >
-          <div class="card bg-white">
-              <div class="card-body">
-                  <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Validity Plan</h6><br>
-                  <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
-                  <hr>
-                  <p><strong>Data:</strong> 1GB/Day</p>
-                  <p><strong>Validity:</strong> 42 Days</p>
-                  <div class="d-flex justify-content-between">
-                      <button class="btn btn-sm btn-primary">Recharge</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="col">
-          <div class="card bg-white">
-              <div class="card-body">
-                  <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Validity Plan</h6><br>
-                  <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
-                  <hr>
-                  <p><strong>Data:</strong> 1GB/Day</p>
-                  <p><strong>Validity:</strong> 42 Days</p>
-                  <div class="d-flex justify-content-between">
-                      <button class="btn btn-sm btn-primary">Recharge</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-         <br><hr><br>
-         <h3 id="dplan" class="text-center text-primary">Data Plans</h3><br>
-         <div class="container">
-          <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center pb-3">
-            <div class="col" >
-                <div class="card bg-white">
-                    <div class="card-body">
-                        <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6><br>
-                        <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.199</h4>
-                        <hr>
-                        <p><strong>Data:</strong> 1GB/Day</p>
-                        <p><strong>Validity:</strong> 28 Days</p>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-sm btn-primary">Recharge</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col" >
-                <div class="card bg-white">
-                    <div class="card-body">
-                        <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6><br>
-                        <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
-                        <hr>
-                        <p><strong>Data:</strong> 1GB/Day</p>
-                        <p><strong>Validity:</strong> 42 Days</p>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-sm btn-primary">Recharge</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col">
-                <div class="card bg-white">
-                    <div class="card-body">
-                        <h6 class="card-title  text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6><br>
-                        <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
-                        <hr>
-                        <p><strong>Data:</strong> 1GB/Day</p>
-                        <p><strong>Validity:</strong> 42 Days</p>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-sm btn-primary">Recharge</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center pb-3">
-          <div class="col" >
-              <div class="card bg-white">
-                  <div class="card-body">
-                      <h6 class="card-title  text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6>
-                      <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.199</h4>
-                      <hr>
-                      <p><strong>Data:</strong> 1GB/Day</p>
-                      <p><strong>Validity:</strong> 28 Days</p>
-                      <div class="d-flex justify-content-between">
-                          <button class="btn btn-sm btn-primary">Recharge</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-    
-          <div class="col" >
-              <div class="card bg-white">
-                  <div class="card-body">
-                      <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6><br>
-                      <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
-                      <hr>
-                      <p><strong>Data:</strong> 1GB/Day</p>
-                      <p><strong>Validity:</strong> 42 Days</p>
-                      <div class="d-flex justify-content-between">
-                          <button class="btn btn-sm btn-primary">Recharge</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-    
-          <div class="col">
-              <div class="card bg-white">
-                  <div class="card-body">
-                      <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Data Plan</h6><br>
-                      <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
-                      <hr>
-                      <p><strong>Data:</strong> 1GB/Day</p>
-                      <p><strong>Validity:</strong> 42 Days</p>
-                      <div class="d-flex justify-content-between">
-                          <button class="btn btn-sm btn-primary">Recharge</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      </div>
-  
-        </div>
-         <br><hr><br>
-         <h3 id="uplan" class="text-center text-primary">Unlimited Plans</h3><br>
-         <div class="container">
-          <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center pb-3">
-            <div class="col" >
-                <div class="card bg-white">
-                    <div class="card-body">
-                        <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
-                        <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.199</h4>
-                        <hr>
-                        <p><strong>Data:</strong> 1GB/Day</p>
-                        <p><strong>Validity:</strong> 28 Days</p>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-sm btn-primary">Recharge</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col" >
-                <div class="card bg-white">
-                    <div class="card-body">
-                        <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
-                        <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
-                        <hr>
-                        <p><strong>Data:</strong> 1GB/Day</p>
-                        <p><strong>Validity:</strong> 42 Days</p>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-sm btn-primary">Recharge</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col">
-                <div class="card bg-white">
-                    <div class="card-body">
-                        <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
-                        <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
-                        <hr>
-                        <p><strong>Data:</strong> 1GB/Day</p>
-                        <p><strong>Validity:</strong> 42 Days</p>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-sm btn-primary">Recharge</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-        <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center pb-3">
-          <div class="col" >
-              <div class="card bg-white">
-                  <div class="card-body">
-                      <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
-                      <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.199</h4>
-                      <hr>
-                      <p><strong>Data:</strong> 1GB/Day</p>
-                      <p><strong>Validity:</strong> 28 Days</p>
-                      <div class="d-flex justify-content-between">
-                          <button class="btn btn-sm btn-primary">Recharge</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-    
-          <div class="col" >
-              <div class="card bg-white">
-                  <div class="card-body">
-                      <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
-                      <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
-                      <hr>
-                      <p><strong>Data:</strong> 1GB/Day</p>
-                      <p><strong>Validity:</strong> 42 Days</p>
-                      <div class="d-flex justify-content-between">
-                          <button class="btn btn-sm btn-primary">Recharge</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-    
-          <div class="col">
-              <div class="card bg-white">
-                  <div class="card-body">
-                      <h6 class="card-title text-black bg-secondary border rounded p-0 d-inline-block">Unlimited Plan</h6><br>
-                      <h4 class="card-title fw-bold text-primary bg-info border rounded p-2 d-inline-block">Rs.299</h4>
-                      <hr>
-                      <p><strong>Data:</strong> 1GB/Day</p>
-                      <p><strong>Validity:</strong> 42 Days</p>
-                      <div class="d-flex justify-content-between">
-                          <button class="btn btn-sm btn-primary">Recharge</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-light" href="/ProjectSample/Login.html">Login</a>
+          </li>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search Plans" aria-label="Search" />
+            <button class="btn btn-outline-warning text-primary" type="submit">Search</button>
+          </form>
+        </ul>
       </div>
     </div>
+  </nav>
+  <br /><br /><br /><br />
   
-         <br>
-         <footer class="text-center bg-primary text-light py-3 bg-opacity-80">
-          <p>&copy; 2025 Mobi-Comm Services Ltd. | Connecting People, Anytime, Anywhere.</p>
-          <p>Customer Support: 1800-123-456 | Email: support@mobi-comm.com</p>
-          <p>
-              <a href="#" class="text-info text-decoration-none">Privacy Policy</a> | 
-              <a href="#" class="text-info text-decoration-none">Terms & Conditions</a> | 
-              <a href="#" class="text-info text-decoration-none">Refund Policy</a>
-          </p>
-          <p>Follow us: 
-              <a href="#" class="text-white text-decoration-none me-2"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="text-white text-decoration-none me-2"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="text-white text-decoration-none me-2"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="text-white text-decoration-none"><i class="bi bi-linkedin"></i></a>
-          </p>
-          </footer>
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-    // Select all buttons with the text "Recharge"
-    document.querySelectorAll("button").forEach(button => {
-        if (button.innerText.trim().toLowerCase() === "recharge") {
-            button.addEventListener("click", function () {
-                window.location.href = "payment.html";
-            });
+  <!-- Banner Section -->
+  <div class="container-fluid position-relative">
+    <div class="row">
+      <div class="col-lg-6 mx-auto text-center">
+        <img src="/images/mobi-comm1.jpg" class="tales1 rounded img-fluid" alt="Banner" />
+        <div class="position-absolute top-50 start-50 translate-middle text-center">
+          <div class="details rounded">
+            <h1 class="display-6 text-light">Welcome to Mobi-Comm</h1>
+            <p class="display-9 text-primary bg-info p-2 rounded">
+              Recharge and choose plans of your choice... Get connected with your loved ones.
+            </p>
+            <a href="#bp" class="btn bg-dark text-primary btn-md mt-3">Explore Plans</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br /><br><br><br>
+  
+  <!-- Carousel Section: You Might Also Like -->
+  <div class="container">
+    <h3 class="text-center text-primary mb-4">You might also like!!</h3><br>
+    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel" style="border-radius: 15px; overflow:hidden">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+            <div class="col-md-5">
+              <div class="card" data-category="popular">
+                <div class="card-body p-4">
+                  <span class="plan-badge badge-popular">
+                    <i class="bi bi-star-fill me-1"></i> Popular
+                  </span>
+                  <h4 class="price-tag">2999</h4>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-wifi"></i>
+                    </div>
+                    <span><strong>2.5 GB/Day</strong> high-speed data</span>
+                  </div>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-calendar-check"></i>
+                    </div>
+                    <span><strong>365 Days</strong> validity</span>
+                  </div>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-telephone"></i>
+                    </div>
+                    <span>Unlimited calls</span>
+                  </div>
+                  <button class="btn recharge-btn Recharge-btn text-primary" data-name="Rs.2999 Plan" data-details="2.5 GB/Day | 365 Days" data-price="2999" data-validity="365">
+                    Recharge
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="card" data-category="popular">
+                <div class="card-body p-4">
+                  <span class="plan-badge badge-popular">
+                    <i class="bi bi-star-fill me-1"></i> Popular
+                  </span>
+                  <h4 class="price-tag">2999</h4>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-wifi"></i>
+                    </div>
+                    <span><strong>2.5 GB/Day</strong> high-speed data</span>
+                  </div>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-calendar-check"></i>
+                    </div>
+                    <span><strong>365 Days</strong> validity</span>
+                  </div>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-telephone"></i>
+                    </div>
+                    <span>Unlimited calls</span>
+                  </div>
+                  <button class="btn recharge-btn Recharge-btn text-primary" data-name="Rs.2999 Plan" data-details="2.5 GB/Day | 365 Days" data-price="2999" data-validity="365">
+                    Recharge
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+            <div class="col-md-5">
+              <div class="card" data-category="unlimited">
+                <div class="card-body p-4">
+                  <span class="plan-badge badge-unlimited">
+                    <i class="bi bi-infinity me-1"></i> Unlimited
+                  </span>
+                  <h4 class="price-tag">199</h4>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-wifi"></i>
+                    </div>
+                    <span><strong>1 GB/Day</strong> high-speed data</span>
+                  </div>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-calendar-check"></i>
+                    </div>
+                    <span><strong>28 Days</strong> validity</span>
+                  </div>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-telephone"></i>
+                    </div>
+                    <span>Unlimited calls</span>
+                  </div>
+                  <button class="btn recharge-btn Recharge-btn text-primary" data-name="Rs.199 Plan" data-details="1GB/Day | 28 Days" data-price="199" data-validity="28">
+                    Recharge
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="card" data-category="unlimited">
+                <div class="card-body p-4">
+                  <span class="plan-badge badge-unlimited">
+                    <i class="bi bi-infinity me-1"></i> Unlimited
+                  </span>
+                  <h4 class="price-tag">299</h4>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-wifi"></i>
+                    </div>
+                    <span><strong>1 GB/Day</strong> high-speed data</span>
+                  </div>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-calendar-check"></i>
+                    </div>
+                    <span><strong>42 Days</strong> validity</span>
+                  </div>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-telephone"></i>
+                    </div>
+                    <span>Unlimited calls</span>
+                  </div>
+                  <button class="btn recharge-btn Recharge-btn text-primary" data-name="Rs.299 Plan" data-details="1GB/Day | 42 Days" data-price="299" data-validity="42">
+                    Recharge
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+            <div class="col-md-5">
+              <div class="card" data-category="data">
+                <div class="card-body p-4">
+                  <span class="plan-badge badge-data">
+                    <i class="bi bi-database me-1"></i> Data
+                  </span>
+                  <h4 class="price-tag">399</h4>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-wifi"></i>
+                    </div>
+                    <span><strong>1 GB/Day</strong> high-speed data</span>
+                  </div>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-calendar-check"></i>
+                    </div>
+                    <span><strong>56 Days</strong> validity</span>
+                  </div>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-telephone"></i>
+                    </div>
+                    <span>Unlimited calls</span>
+                  </div>
+                  <button class="btn recharge-btn Recharge-btn text-primary" data-name="Rs.399 Plan" data-details="1GB/Day | 56 Days" data-price="399" data-validity="56">
+                    Recharge
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="card" data-category="data">
+                <div class="card-body p-4">
+                  <span class="plan-badge badge-data">
+                    <i class="bi bi-database me-1"></i> Data
+                  </span>
+                  <h4 class="price-tag">499</h4>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-wifi"></i>
+                    </div>
+                    <span><strong>2 GB/Day</strong> high-speed data</span>
+                  </div>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-calendar-check"></i>
+                    </div>
+                    <span><strong>56 Days</strong> validity</span>
+                  </div>
+                  <div class="feature-item">
+                    <div class="feature-icon">
+                      <i class="bi bi-telephone"></i>
+                    </div>
+                    <span>Unlimited calls</span>
+                  </div>
+                  <button class="btn recharge-btn Recharge-btn text-primary" data-name="Rs.499 Plan" data-details="2GB/Day | 56 Days" data-price="499" data-validity="56">
+                    Recharge
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <br />
+  </div>
+  <hr /><br /><br>
+  
+  <!-- Inline Category Filter Bar -->
+  <div id="categoryFilter" class="d-flex justify-content-center my-4 flex-wrap">
+    <button class="btn btn-outline-primary mx-2 my-1 filter-btn active" data-category="all">
+      <i class="bi bi-grid-3x3-gap-fill me-1"></i> All
+    </button>
+    <button class="btn btn-outline-primary mx-2 my-1 filter-btn" data-category="exclusive">
+      <i class="bi bi-gem me-1"></i> Exclusive
+    </button>
+    <button class="btn btn-outline-primary mx-2 my-1 filter-btn" data-category="popular">
+      <i class="bi bi-star-fill me-1"></i> Popular
+    </button>
+    <button class="btn btn-outline-primary mx-2 my-1 filter-btn" data-category="data">
+      <i class="bi bi-database me-1"></i> Data
+    </button>
+    <button class="btn btn-outline-primary mx-2 my-1 filter-btn" data-category="validity">
+      <i class="bi bi-calendar-check me-1"></i> Validity
+    </button>
+    <button class="btn btn-outline-primary mx-2 my-1 filter-btn" data-category="unlimited">
+      <i class="bi bi-infinity me-1"></i> Unlimited
+    </button>
+  </div>
+  <br>
+  <!-- Sort & Adjustable Filter Bar -->
+  <div id="sortFilter" class="d-flex justify-content-between align-items-center my-4 container">
+    <div id="sortControls" class="d-flex align-items-center flex-wrap">
+      <select id="sortCriteria" class="form-select me-2 my-1" style="max-width: 150px;">
+        <option value="price">Price</option>
+        <option value="validity">Validity</option>
+      </select>
+      <select id="sortOrder" class="form-select me-2 my-1" style="max-width: 150px;">
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+      <button id="sortButton" class="btn btn-outline-primary bg-primary my-1">
+        <i class="bi bi-sort-alpha-down me-1"></i> Sort
+      </button>
+    </div>
+    <div id="adjustableFilter" class="d-flex align-items-center flex-wrap">
+      <label for="priceRange" class="me-2 my-1">Price: <span id="priceValue">700</span></label>
+      <input type="range" id="priceRange" min="0" max="700" value="700" class="form-range me-3 my-1" style="width: 150px;">
+      <label for="validityRange" class="me-2 my-1">Validity: <span id="validityValue">100</span></label>
+      <input type="range" id="validityRange" min="0" max="100" value="100" class="form-range me-3 my-1" style="width: 150px;">
+      <button id="applyFilterButton" class="btn btn-outline-primary bg-primary my-1">
+        <i class="bi bi-funnel-fill me-1"></i> Apply Filter
+      </button>
+    </div>
+  </div>
+  <br /><br>
+  
+  <!-- Exclusive Plans Section -->
+  <div class="container">
+    <h3 class="text-primary text-center" id="bp">
+      <i class="bi bi-gem me-2"></i>Exclusive Plans
+    </h3><br><br>
+    <div id="exclusivePlansContainer" class="row mt-4 justify-content-center" data-category="exclusive">
+      <!-- Plans will be populated here from JSON -->
+    </div>
+  </div>
+  <br /><br /><br>
+  
+  <!-- Popular Plans Section -->
+  <div class="container">
+    <h3 class="text-primary text-center" id="pplan">
+      <i class="bi bi-star-fill me-2"></i>Popular Plans
+    </h3><br>
+    <div id="popularPlansContainer" class="row mt-4 justify-content-center" data-category="popular">
+      <!-- Plans will be populated here from JSON -->
+    </div>
+  </div>
+  <br /><br />
+  
+  <!-- Data Plans Section -->
+  <div class="container">
+    <h3 class="text-primary text-center" id="dplan">
+      <i class="bi bi-database me-2"></i>Data Plans
+    </h3><br>
+    <div id="dataPlansContainer" class="row mt-4 justify-content-center" data-category="data">
+      <!-- Plans will be populated here from JSON -->
+    </div>
+  </div>
+  <br /><br />
+  
+  <!-- Validity Plans Section -->
+  <div class="container">
+    <h3 class="text-primary text-center" id="vplan">
+      <i class="bi bi-calendar-check me-2"></i>Validity Plans
+    </h3><br>
+    <div id="validityPlansContainer" class="row mt-4 justify-content-center" data-category="validity">
+      <!-- Plans will be populated here from JSON -->
+    </div>
+  </div>
+  <br /><br /><br>
+  
+  <!-- Unlimited Plans Section -->
+  <div class="container">
+    <h3 class="text-primary text-center" id="uplan">
+      <i class="bi bi-infinity me-2"></i>Unlimited Plans
+    </h3><br>
+    <div id="unlimitedPlansContainer" class="row mt-4 justify-content-center" data-category="unlimited">
+      <!-- Plans will be populated here from JSON -->
+    </div>
+  </div>
+  <br /><br /><hr /><br /><br />
+  </div>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-top justify-content-center">
+      <div class="content-container ps-5 pt-0">
+        <div class="row">
+          <div class="col-md-4">
+            <h5>Mobi-Comm Service Pvt Ltd</h5>
+            <p>Connecting People, Anytime, Anywhere.</p>
+          </div>
+          <div class="col-md-4">
+            <h5>Quick Links</h5>
+            <ul>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">Refund Policy</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Connect With Us</h5>
+            <p>Follow us on social media for the latest updates.</p>
+            <a href="#" class="me-2 text-white"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="me-2 text-white"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="me-2 text-white"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="content-container">
+        <p class="mb-0">&copy; 2025 Mobi-Comm Service Pvt Ltd. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- JavaScript -->
+  <script>
+    // Load plans from JSON file
+    async function fetchAndPopulatePlans() {
+      try {
+        const response = await fetch('plans.json');
+        if (!response.ok) {
+          throw new Error('Failed to fetch plans data');
         }
-    });
-    document.querySelectorAll("button").forEach(button => {
-        if (button.innerText.trim().toLowerCase() === "buy") {
-            button.addEventListener("click", function () {
-                window.location.href = "payment.html";
-            });
+        
+        const plans = await response.json();
+        
+        // Populate each category container
+        populatePlansContainer('popularPlansContainer', plans.filter(plan => plan.category === 'popular'));
+        populatePlansContainer('dataPlansContainer', plans.filter(plan => plan.category === 'data'));
+        populatePlansContainer('validityPlansContainer', plans.filter(plan => plan.category === 'validity'));
+        populatePlansContainer('unlimitedPlansContainer', plans.filter(plan => plan.category === 'unlimited'));
+        populatePlansContainer('exclusivePlansContainer', plans.filter(plan => plan.category === 'exclusive'));
+        
+        // Apply data attributes for filtering
+        applyDataAttributes();
+        
+        // Initialize animations
+        initCardAnimations();
+        
+      } catch (error) {
+        console.error('Error loading plans:', error);
+      }
+    }
+    
+    // Function to populate a container with plans
+    function populatePlansContainer(containerId, plans) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      
+      container.innerHTML = ''; // Clear existing content
+      
+      plans.forEach(plan => {
+        const cardHtml = createPlanCard(plan);
+        container.innerHTML += cardHtml;
+      });
+    }
+    
+    // Function to create a plan card HTML
+    function createPlanCard(plan) {
+      const badgeClass = `badge-${plan.category}`;
+      const badgeIcon = getBadgeIcon(plan.category);
+      const badgeText = plan.category.charAt(0).toUpperCase() + plan.category.slice(1);
+      
+      return `
+        <div class="col-md-4 card-container">
+          <div class="card" data-category="${plan.category}" data-price="${plan.price}" data-validity="${plan.validity}">
+            <div class="card-body p-4">
+              <span class="plan-badge ${badgeClass}">
+                <i class="bi ${badgeIcon} me-1"></i> ${badgeText}
+              </span>
+              <h4 class="price-tag">${plan.price}</h4>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="bi bi-wifi"></i>
+                </div>
+                <span><strong>${plan.data}</strong> high-speed data</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="bi bi-calendar-check"></i>
+                </div>
+                <span><strong>${plan.validity} Days</strong> validity</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <i class="bi bi-telephone"></i>
+                </div>
+                <span>${plan.calls}</span>
+              </div>
+              <button class="btn recharge-btn Recharge-btn text-primary" 
+                data-name="Rs.${plan.price} Plan" 
+                data-details="${plan.data} | ${plan.validity} Days" 
+                data-price="${plan.price}" 
+                data-validity="${plan.validity}">
+                Recharge
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    // Helper function to get the appropriate badge icon
+    function getBadgeIcon(category) {
+      const icons = {
+        'popular': 'bi-star-fill',
+        'data': 'bi-database',
+        'validity': 'bi-calendar-check',
+        'unlimited': 'bi-infinity',
+        'exclusive': 'bi-gem'
+      };
+      return icons[category] || 'bi-tag-fill';
+    }
+    
+    // Function to apply data-attributes to all cards for filtering
+    function applyDataAttributes() {
+      document.querySelectorAll(".card").forEach(card => {
+        if (!card.hasAttribute("data-price") || !card.hasAttribute("data-validity")) {
+          const priceTag = card.querySelector(".price-tag");
+          const validityText = card.querySelector(".feature-item:nth-child(2) span strong");
+          
+          if (priceTag && !card.hasAttribute("data-price")) {
+            const price = parseInt(priceTag.textContent.trim());
+            card.setAttribute("data-price", price);
+          }
+          
+          if (validityText && !card.hasAttribute("data-validity")) {
+            const validity = parseInt(validityText.textContent);
+            card.setAttribute("data-validity", validity);
+          }
         }
-    });
-});
+      });
+    }
 
-      </script>
+    // Initialize card animations with Intersection Observer
+    function initCardAnimations() {
+      const cardContainers = document.querySelectorAll('.card-container');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              // Unobserve after animation is triggered
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      
+      cardContainers.forEach(container => observer.observe(container));
+    }
+
+    // Function to set up filtering functionality
+    function setupFilters() {
+      // Category filter buttons
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      filterButtons.forEach(button => {
+        button.addEventListener("click", function() {
+          // Update active button
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          
+          const selectedCategory = this.getAttribute("data-category");
+          const planSections = document.querySelectorAll(".container > .row[data-category]");
+          
+          planSections.forEach(section => {
+            const sectionCategory = section.getAttribute("data-category");
+            if (selectedCategory === "all" || sectionCategory === selectedCategory) {
+              section.closest('.container').style.display = "";
+              section.style.display = "";
+              // Re-trigger animations for visible sections
+              const cards = section.querySelectorAll('.card-container');
+              cards.forEach((card, index) => {
+                card.classList.remove('visible');
+                setTimeout(() => {
+                  card.classList.add('visible');
+                }, index * 100);
+              });
+            } else {
+              section.closest('.container').style.display = "none";
+            }
+          });
+        });
+      });
+      
+      // Price and validity range inputs
+      const priceRange = document.getElementById("priceRange");
+      const validityRange = document.getElementById("validityRange");
+      const priceValue = document.getElementById("priceValue");
+      const validityValue = document.getElementById("validityValue");
+      
+      priceRange.addEventListener("input", () => { 
+        priceValue.textContent = priceRange.value; 
+      });
+      
+      validityRange.addEventListener("input", () => { 
+        validityValue.textContent = validityRange.value; 
+      });
+      
+      // Apply filters button
+      document.getElementById("applyFilterButton").addEventListener("click", function() {
+        const maxPrice = parseInt(priceRange.value);
+        const maxValidity = parseInt(validityRange.value);
+        
+        document.querySelectorAll(".card").forEach(card => {
+          const cardPrice = parseInt(card.getAttribute("data-price"));
+          const cardValidity = parseInt(card.getAttribute("data-validity"));
+          const container = card.closest('.card-container');
+          
+          if (cardPrice <= maxPrice && cardValidity <= maxValidity) {
+            container.style.display = "";
+            // Add a small animation when cards are shown
+            container.classList.remove('visible');
+            setTimeout(() => {
+              container.classList.add('visible');
+            }, 50);
+          } else {
+            container.style.display = "none";
+          }
+        });
+      });
+      
+      // Sort functionality for all card-based sections
+      const sortButton = document.getElementById("sortButton");
+      sortButton.addEventListener("click", function() {
+        const criteria = document.getElementById("sortCriteria").value;
+        const order = document.getElementById("sortOrder").value;
+        const containers = document.querySelectorAll(".row[data-category]");
+        
+        containers.forEach(container => {
+          const cards = Array.from(container.querySelectorAll('.card-container'));
+          
+          cards.sort((a, b) => {
+            const cardA = a.querySelector(".card");
+            const cardB = b.querySelector(".card");
+            const valueA = parseInt(cardA.getAttribute("data-" + criteria));
+            const valueB = parseInt(cardB.getAttribute("data-" + criteria));
+            return order === "asc" ? valueA - valueB : valueB - valueA;
+          });
+          
+          // Clear and re-append sorted cards
+          cards.forEach(card => container.appendChild(card));
+          
+          // Re-trigger animations
+          cards.forEach((card, index) => {
+            card.classList.remove('visible');
+            setTimeout(() => {
+              card.classList.add('visible');
+            }, index * 100);
+          });
+        });
+      });
+    }
+
+    // Initialize when document is ready
+    document.addEventListener("DOMContentLoaded", function() {
+      // Load plans from JSON file
+      fetchAndPopulatePlans();
+      
+      // Setup filtering functionality
+      setupFilters();
+      
+      // Handle Recharge button clicks
+      document.addEventListener("click", function(e) {
+        if (e.target.classList.contains("Recharge-btn") || e.target.closest(".Recharge-btn")) {
+          const button = e.target.classList.contains("Recharge-btn") ? e.target : e.target.closest(".Recharge-btn");
+          const selectedPlan = {
+            name: button.getAttribute("data-name") || "Default Plan",
+            details: button.getAttribute("data-details") || "",
+            price: button.getAttribute("data-price") || "",
+            validity: button.getAttribute("data-validity") || ""
+          };
+          
+          // Add a click animation
+          button.classList.add('animate-pulse');
+          setTimeout(() => {
+            button.classList.remove('animate-pulse');
+          }, 500);
+          
+          // Store selected plan and navigate
+          localStorage.setItem("selectedPlan", JSON.stringify(selectedPlan));
+          window.location.href = "payment.html";
+        }
+      });
+      
+      // Initialize animations for initial cards
+      setTimeout(() => {
+        document.querySelectorAll('.card-container').forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('visible');
+          }, index * 100);
+        });
+      }, 300);
+    });
+  </script>
 </body>
 </html>
